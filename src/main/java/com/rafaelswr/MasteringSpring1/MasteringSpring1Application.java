@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Arrays;
+
 @SpringBootApplication
 public class MasteringSpring1Application {
 
@@ -16,6 +18,10 @@ public class MasteringSpring1Application {
 		//System.out.println(myClass.hello());
 
 		MyService myService = context.getBean(MyService.class);
+		//System.out.println("Profiles: " + Arrays.toString(myService.getEnvironment().getActiveProfiles()));
+		System.out.println("JAVA -v: " + myService.getOS());
+		System.out.println("My Property: " + myService.readProperty());
+
 		System.out.println(myService.tellAStory());
 
 
