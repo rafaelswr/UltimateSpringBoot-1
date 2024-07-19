@@ -18,10 +18,15 @@ public class MasteringSpring1Application {
 		//System.out.println(myClass.hello());
 
 		MyService myService = context.getBean(MyService.class);
-		//System.out.println("Profiles: " + Arrays.toString(myService.getEnvironment().getActiveProfiles()));
-		System.out.println("JAVA -v: " + myService.getOS());
+		System.out.println("JAVA -v: " + myService.getJavaVersion());
 		System.out.println("My Property: " + myService.readProperty());
+		System.out.println("OS name:  " + myService.getOSName());
+		myService.setOSName("Linux");
+		System.out.println("OS name:  " + myService.getOSName());
 
+		System.out.println("ClassPath: " + myService.getClassPath() );
+		System.out.println("Property From another file: " + myService.getMyCustomPropertyFromAnotherFile());
+		System.out.println("Property from file 2: " + myService.getMyFile2Property());
 		System.out.println(myService.tellAStory());
 
 
