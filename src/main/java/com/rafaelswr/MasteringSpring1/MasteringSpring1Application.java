@@ -6,13 +6,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 @SpringBootApplication
 public class MasteringSpring1Application {
 
 
 	public static void main(String[] args) {
-		var context = SpringApplication.run(MasteringSpring1Application.class, args);
+		var app = new SpringApplication(MasteringSpring1Application.class);
+		app.setDefaultProperties(Collections.singletonMap("spring.profiles.active","dev"));
+		var context = app.run(args);
+
 
 		//MyClass myClass = context.getBean("myClass", MyClass.class);
 		//System.out.println(myClass.hello());
