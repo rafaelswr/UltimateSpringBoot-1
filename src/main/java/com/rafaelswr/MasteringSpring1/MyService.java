@@ -27,7 +27,7 @@ public class MyService {
     private String myFile2Property;
 
     @Autowired
-    public MyService(@Qualifier("myFirstBean") MyClass myClass,
+    public MyService(@Qualifier("mySecondBean") MyClass myClass,
                      Environment environment,
                      @Value("#{systemProperties['os.name']}") String osName,
                      @Value("${my.prop}") String myCustomPropertyFromAnotherFile,

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 public class MyClass {
 
+
     private String myVar;
 
     public MyClass(String myVar) {

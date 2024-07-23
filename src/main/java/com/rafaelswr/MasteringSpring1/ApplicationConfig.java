@@ -3,7 +3,6 @@ package com.rafaelswr.MasteringSpring1;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
@@ -12,8 +11,8 @@ import org.springframework.context.annotation.Profile;
 })
 public class ApplicationConfig {
 
-    @Bean("myFirstBean")
     //@Profile("dev")
+    @Bean("myFirstBean")
     public MyClass myFirstBean(){
         return new MyClass("My First Bean");
     }

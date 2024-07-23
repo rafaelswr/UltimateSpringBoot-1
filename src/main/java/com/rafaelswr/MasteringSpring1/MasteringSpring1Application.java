@@ -1,17 +1,14 @@
 package com.rafaelswr.MasteringSpring1;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 
 @SpringBootApplication
 public class MasteringSpring1Application {
 
+	//#########SPRING BEANS##############
 
 	public static void main(String[] args) {
 		var app = new SpringApplication(MasteringSpring1Application.class);
@@ -36,6 +33,5 @@ public class MasteringSpring1Application {
 
 
 	}
-
 
 }
