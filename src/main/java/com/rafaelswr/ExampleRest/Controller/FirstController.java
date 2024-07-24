@@ -1,6 +1,7 @@
 package com.rafaelswr.ExampleRest.Controller;
 
 import com.rafaelswr.ExampleRest.Model.Order;
+import com.rafaelswr.ExampleRest.Model.OrderRecord;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,13 +15,27 @@ public class FirstController {
         return "hello from my first controller";
     }
 
-    @PostMapping("/{name}")
+    @PostMapping("/order")
     @ResponseStatus(HttpStatus.OK)
-    public String sendName(@RequestBody Order order) {
-        return "Customer: "+ order.getCustomerName()+
-                "\nProductName: "+order.getProductName()+"\nQuantity: "+order.getQuantity();
+    public String sendPost(@RequestBody Order order) {
+        return order.toString();
 
     }
+
+    @PostMapping("/order-record")
+    @ResponseStatus(HttpStatus.OK)
+    public String sendPostRecord(@RequestBody OrderRecord order) {
+        return order.toString();
+
+    }
+
+    @PostMapping("/{userName}")
+    @ResponseStatus(HttpStatus.OK)
+    public String sendPostRecord(@PathVariable String userName) {
+        return "Hello, "+ userName+" page!!";
+
+    }
+
 
 
 
