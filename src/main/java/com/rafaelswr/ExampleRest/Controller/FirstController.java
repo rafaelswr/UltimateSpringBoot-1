@@ -36,8 +36,13 @@ public class FirstController {
 
     }
 
+    @PostMapping("/hello")
+    @ResponseStatus(HttpStatus.OK)
+    public String sendPostByRequestParam(
+            @RequestParam("userName") String userName,
+            @RequestParam("lastName") String lastName
+        ) {
+        return "Hello, "+ userName+" "+ lastName;
 
-
-
-
+    }
 }
