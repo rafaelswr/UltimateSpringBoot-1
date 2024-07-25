@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/first")
 public class FirstController {
 
+    //  http://.../first/greetings
     @GetMapping("/greetings")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public String greetings(){
         return "hello from my first controller";
     }
+
 
     @PostMapping("/order")
     @ResponseStatus(HttpStatus.OK)
@@ -22,6 +24,7 @@ public class FirstController {
 
     }
 
+    // http://.../first/order-record  and send OrderRecord Object
     @PostMapping("/order-record")
     @ResponseStatus(HttpStatus.OK)
     public String sendPostRecord(@RequestBody OrderRecord order) {
@@ -29,6 +32,7 @@ public class FirstController {
 
     }
 
+    // http://.../first/jose
     @PostMapping("/{userName}")
     @ResponseStatus(HttpStatus.OK)
     public String sendPostRecord(@PathVariable String userName) {
@@ -36,7 +40,9 @@ public class FirstController {
 
     }
 
-    @PostMapping("/hello")
+
+    // http://.../first/hello?userName=Jose&lastName=Jose
+    @GetMapping("/hello")
     @ResponseStatus(HttpStatus.OK)
     public String sendPostByRequestParam(
             @RequestParam("userName") String userName,
@@ -45,4 +51,6 @@ public class FirstController {
         return "Hello, "+ userName+" "+ lastName;
 
     }
+
+
 }
