@@ -1,5 +1,5 @@
 ### Overview 
-Despite already having knowledge about Java, and the development of simple and basic restful api's, using the spring framework, in other repo's, this repo's, this repository serves to restart learning, it stopped in the last few months, due to other academic projects.
+Despite already having knowledge about Java, and the development of simple and basic restful api's, using the spring framework, in other repo's, and this serves to restart learning, it stopped in the last few months, due to other academic projects.
 
 The objective is to explore and better understand the mechanics of developing applications with these technologies, and learn more about the use of microservices and containers and the resources provided by the framework.
 
