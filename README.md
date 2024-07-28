@@ -6,8 +6,10 @@ Speaking of this repository, it covers the theoretical part about beans, depende
 ## Project Info, Restful API
 Develop a simple Restful Api, with 3 related entities, including:
 Student, School, and Student Profile.
+
 The architecture:
-![Logo do Projeto](src/main/resources/DB_design.jpg).
+
+![Student is the central entity that has a 1-1 relationship with the student profile and 1-N with the school.](src/main/resources/DB_design.jpg).
 
 ## Tecnologies & Tools 
 Java 17, Postman, IntelliJ, PostgreSQL (by CMD & pgAdmin4), Spring Boot 3, Maven; 
