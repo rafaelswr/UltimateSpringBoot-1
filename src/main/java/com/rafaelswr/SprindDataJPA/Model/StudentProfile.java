@@ -18,7 +18,14 @@ public class StudentProfile {
 
     private String bio;
 
+    //extra field on StudentProfile table with name student_id FK
+    @OneToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
+
     public StudentProfile(String bio) {
         this.bio = bio;
     }
+
+
 }

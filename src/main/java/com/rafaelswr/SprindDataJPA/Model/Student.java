@@ -1,6 +1,7 @@
 package com.rafaelswr.SprindDataJPA.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
@@ -23,6 +24,16 @@ public class Student {
     @Column(name = "email", unique = true)
     private String email;
     private int age;
+
+    //primary Entity in relation to Student Profile
+    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+    private StudentProfile studentProfile;
+
+
+    @ManyToOne
+    @JoinColumn(name = "school_id", referencedColumnName = "id")
+    @JsonBackReference
+    private School school;
 
     @Transient
     @Column(insertable = true, updatable = false)
