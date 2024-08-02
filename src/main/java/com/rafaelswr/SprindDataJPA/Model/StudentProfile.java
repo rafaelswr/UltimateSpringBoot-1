@@ -1,5 +1,7 @@
 package com.rafaelswr.SprindDataJPA.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +22,8 @@ public class StudentProfile {
 
     //extra field on StudentProfile table with name student_id FK
     @OneToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "student_id", referencedColumnName = "id")
+    @JsonBackReference
     private Student student;
 
     public StudentProfile(String bio) {
