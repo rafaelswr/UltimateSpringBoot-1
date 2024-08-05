@@ -15,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @RestController
 @Slf4j
@@ -30,18 +31,16 @@ public class StudentController {
 
     //Save student in database, through repository
     @PostMapping("/save")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void saveNewStudent(@RequestBody StudentRecordDTO studentRecordDTO){
+    public ResponseEntity<String> saveNewStudent(@RequestBody StudentRecordDTO studentRecordDTO){
         var student = toStudent(studentRecordDTO);
-
         try{
             studentRepository.save(student);
+            log.info("Student created successfully");
         } catch (Exception e) {
-            // Log the error
             log.error("Error saving student", e);
-            // Throw a specific exception with a message and status code
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to save student", e);
         }
+        return new ResponseEntity<>("Student created successfully", HttpStatus.CREATED);
     }
 
     private Student toStudent(StudentRecordDTO dto){
@@ -60,36 +59,55 @@ public class StudentController {
 
     //get student by ID
     @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public StudentResponseDTO getStudentById(@PathVariable Integer id){
-        Optional<Student> student = studentRepository.findById(id);
-        return student.map(value -> new StudentResponseDTO(value.getFirstName(),
-                value.getLastName(),value.getEmail())).orElse(new StudentResponseDTO(null, null, ""));
+    public ResponseEntity<StudentResponseDTO> getStudentById(@PathVariable Integer id) {
+        var student = studentRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.warn("Student ID not found !");
+                    return new ResponseStatusException(HttpStatus.NOT_FOUND, "Student ID not found");
+                });
+        return new ResponseEntity<>(toStudentResponse(student), HttpStatus.OK);
+    }
+
+    private StudentResponseDTO toStudentResponse(Student student) {
+        return new StudentResponseDTO(student.getFirstName(), student.getLastName(), student
+                .getEmail());
     }
 
     //get students By Name
     @GetMapping("/search/{name}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Student> getStudentsByName(@PathVariable String name){
-        return studentRepository.findAllByFirstName(name);
+    public List<StudentResponseDTO> getStudentsByName(@PathVariable String name){
+        List<Student> studentsList =  studentRepository.findAllByFirstName(name);
+        return studentsList.stream().map(student ->
+                new StudentResponseDTO(student.getFirstName(), student.getLastName(), student.getEmail())).toList();
     }
 
 
     //get All Students
     @GetMapping
-    public ResponseEntity<List<Student>> getAllStudents(){
-        return new ResponseEntity<>(studentRepository.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<StudentResponseDTO>> getAllStudents(){
+       var students = studentRepository.findAll();
+       var studentsDTO =  students.stream().map(student ->
+               new StudentResponseDTO(student.getFirstName(), student.getLastName(), student.getEmail())).toList();
+       return new ResponseEntity<>(studentsDTO, HttpStatus.OK);
     }
 
     //Delete user
     @DeleteMapping("/{id}/delete")
-    public String deleteStudent(@PathVariable Integer id){
+    public ResponseEntity<String> deleteStudent(@PathVariable Integer id){
         Optional<Student> student = studentRepository.findById(id);
         if(student.isPresent()){
-            studentRepository.deleteById(id);
-            return "Student eliminated";
+            try{
+                studentRepository.deleteById(id);
+                log.info("Student has been deleted.");
+                return  new ResponseEntity<>("Student has been deleted.", HttpStatus.OK);
+            }catch (Error e){
+                log.error("Unable to delete Student" + e.getMessage());
+                throw new  ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to delete student", e);
+            }
         }else{
-            return "algo correu mal";
+            log.warn("Student with id " + id + " not found.");
+            return new ResponseEntity<>("Student with id " + id + " not found.", HttpStatus.NOT_FOUND);
         }
     }
 
