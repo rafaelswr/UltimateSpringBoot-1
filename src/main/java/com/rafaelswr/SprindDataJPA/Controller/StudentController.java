@@ -1,9 +1,7 @@
 package com.rafaelswr.SprindDataJPA.Controller;
 
-import com.rafaelswr.SprindDataJPA.Model.School;
-import com.rafaelswr.SprindDataJPA.Model.Student;
-import com.rafaelswr.SprindDataJPA.Model.StudentRecordDTO;
-import com.rafaelswr.SprindDataJPA.Model.StudentResponseDTO;
+import com.rafaelswr.SprindDataJPA.Model.Student.StudentRecordDTO;
+import com.rafaelswr.SprindDataJPA.Model.Student.StudentResponseDTO;
 import com.rafaelswr.SprindDataJPA.Repository.StudentRepository;
 import com.rafaelswr.SprindDataJPA.Service.StudentService;
 import lombok.extern.slf4j.Slf4j;
@@ -14,9 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @RestController
 @Slf4j

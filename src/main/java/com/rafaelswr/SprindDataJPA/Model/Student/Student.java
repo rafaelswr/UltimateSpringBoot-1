@@ -1,13 +1,13 @@
-package com.rafaelswr.SprindDataJPA.Model;
+package com.rafaelswr.SprindDataJPA.Model.Student;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.rafaelswr.SprindDataJPA.Model.School.School;
+import com.rafaelswr.SprindDataJPA.Model.StudentProfile.StudentProfile;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.service.spi.InjectService;
 import org.springframework.context.annotation.Profile;
 
 import java.time.LocalDate;

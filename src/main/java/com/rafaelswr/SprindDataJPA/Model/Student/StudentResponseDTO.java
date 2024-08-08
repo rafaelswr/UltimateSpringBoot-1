@@ -1,4 +1,4 @@
-package com.rafaelswr.SprindDataJPA.Model;
+package com.rafaelswr.SprindDataJPA.Model.Student;
 
 //expose response student object
 public record StudentResponseDTO(

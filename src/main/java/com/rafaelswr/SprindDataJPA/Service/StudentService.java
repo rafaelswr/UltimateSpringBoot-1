@@ -1,11 +1,10 @@
 package com.rafaelswr.SprindDataJPA.Service;
 
-import com.rafaelswr.SprindDataJPA.Model.School;
-import com.rafaelswr.SprindDataJPA.Model.Student;
-import com.rafaelswr.SprindDataJPA.Model.StudentRecordDTO;
-import com.rafaelswr.SprindDataJPA.Model.StudentResponseDTO;
+import com.rafaelswr.SprindDataJPA.Model.School.School;
+import com.rafaelswr.SprindDataJPA.Model.Student.Student;
+import com.rafaelswr.SprindDataJPA.Model.Student.StudentRecordDTO;
+import com.rafaelswr.SprindDataJPA.Model.Student.StudentResponseDTO;
 import com.rafaelswr.SprindDataJPA.Repository.StudentRepository;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

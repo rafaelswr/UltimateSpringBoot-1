@@ -1,7 +1,7 @@
 package com.rafaelswr.SprindDataJPA.Service;
 
-import com.rafaelswr.SprindDataJPA.Model.School;
-import com.rafaelswr.SprindDataJPA.Model.SchoolRecordDTO;
+import com.rafaelswr.SprindDataJPA.Model.School.School;
+import com.rafaelswr.SprindDataJPA.Model.School.SchoolRecordDTO;
 import com.rafaelswr.SprindDataJPA.Repository.SchoolRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

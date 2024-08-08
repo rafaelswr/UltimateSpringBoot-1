@@ -1,6 +1,7 @@
-package com.rafaelswr.SprindDataJPA.Model;
+package com.rafaelswr.SprindDataJPA.Model.School;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.rafaelswr.SprindDataJPA.Model.Student.Student;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
