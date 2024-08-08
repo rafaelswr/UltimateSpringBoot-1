@@ -70,7 +70,7 @@ public class StudentService {
        Optional<Student> student = studentRepository.findById(id);
        if(student.isPresent()){
            studentRepository.deleteById(id);
-           log.info("Student {} has been successfully deleted!", id);
+           log.info("Student \"{}\" has been successfully deleted!", student.get().getFirstName());
        }else {
            log.warn("Student {} not found", id);
            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student Not Found!");
