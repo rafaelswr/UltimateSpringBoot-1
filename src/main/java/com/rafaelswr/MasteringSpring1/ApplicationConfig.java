@@ -18,7 +18,7 @@ public class ApplicationConfig {
     }
     @Bean
     @Qualifier("mySecondBean")
-    public MyClass mySecondBean(){
+    public MyClass mySecondBean() {
         return new MyClass("My Second Bean");
     }
 

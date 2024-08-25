@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.rafaelswr.SprindDataJPA.Model.School.School;
 import com.rafaelswr.SprindDataJPA.Model.StudentProfile.StudentProfile;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.context.annotation.Profile;
@@ -16,7 +18,9 @@ import java.time.Period;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Profile({"dev", "prod"})
+@Builder
 @Table(name = "student")
 public class Student {
 

@@ -26,27 +26,14 @@ public class StudentService {
     }
 
     public void saveNewStudentDB(StudentRecordDTO student){
-        try{
-            Student s = toStudent(student);
-            studentRepository.save(s);
+        Optional<Student> studentExists = studentRepository.findByEmail(toStudent(student).getEmail());
+        if(studentExists.isEmpty()){
+            studentRepository.save(studentExists.get());
             log.info("Student created successfully");
-        } catch (Exception e) {
-            log.error("Error saving student", e);
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to save student", e);
+        } else {
+            log.error("Error saving, student is already there!");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error saving, student is already there!");
         }
-    }
-    private Student toStudent(StudentRecordDTO dto){
-        var student = new Student();
-        student.setFirstName(dto.firstName());
-        student.setLastName(dto.lastName());
-        student.setEmail(dto.email());
-        student.setBirthday(dto.birthday());
-
-        var school = new School();
-        school.setId(dto.schoolId());
-
-        student.setSchool(school);
-        return student;
     }
 
     public StudentResponseDTO getStudentByIdFromDB(Integer id) {
@@ -78,7 +65,21 @@ public class StudentService {
 
     }
 
-    private StudentResponseDTO toStudentResponse(Student student) {
+    public Student toStudent(StudentRecordDTO dto){
+        var student = new Student();
+        student.setFirstName(dto.firstName());
+        student.setLastName(dto.lastName());
+        student.setEmail(dto.email());
+        student.setBirthday(dto.birthday());
+
+        var school = new School();
+        school.setId(dto.schoolId());
+
+        student.setSchool(school);
+        return student;
+    }
+
+    public StudentResponseDTO toStudentResponse(Student student) {
         return new StudentResponseDTO(student.getFirstName(), student.getLastName(), student
                 .getEmail());
     }
